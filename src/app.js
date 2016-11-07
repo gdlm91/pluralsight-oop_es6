@@ -1,36 +1,17 @@
-class Drone {
+import { Vehicle } from './vehicle.js';
+import { Car } from './car.js';
+import { Drone } from './drone.js';
 
-    constructor(id, name) { //Constructor
-        console.log(`Constructing Drone with id: ${id}, name: ${name}`);
-        this.id = id; //Publi Property
-        this._name = name; //Private Property (convention, not really private)
-    }
+let c = new Car(123);
 
-    static getCompany() { //Static Method. Won't work on Instance.
-        console.log('in getCompany');
-    }
+console.log(c instanceof Car); //true
+console.log(c instanceof Vehicle); //true
+console.log(c instanceof Object); //true
 
-    fly() { //Public Method
-        console.log(`Drone ${this.id} is flying`);
-    }
+console.log(`c LN is: ${c.licenseNumber}`);
+console.log(`c GPS is: ${c.gpsEnabled}`);
 
-    get name() { //Getter.
-        return this._name.toUpperCase();
-    }
+c.start();
+c.stop(); //Inheriting Method
 
-    set name(value) { //Setter
-        this._name = value.toLowerCase();
-        console.log(`Set ._name priperty to: ${this._name}`);
-    }
-
-}
-Drone.maxHeight = 2000; //Static Property. Undefined for Instances
-
-let drone = new Drone(1, "Flyer");
-let drone2 = new Drone(2, "Twirl");
-
-drone.fly();
-
-console.log(drone2.name); //Using getter
-
-drone.name = "MAXFlyer"; //Using setter
+Car.getCompanyName(); //Inheriting Static Method
