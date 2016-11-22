@@ -1,40 +1,30 @@
 import $ from 'jquery';
-
-import { Car } from './classes/car.js';
-import { Drone } from './classes/drone.js';
 import { FleetService } from './services/fleet.service.js';
+import { BaseApplication } from './framework/base-application.js';
 
-import { Button } from './ui/button.js';
-import { Image } from './ui/image.js';
-import { TitleBar } from './ui/title-bar.js';
-import { DataTable } from './ui/data-table.js';
-import { GoogleMap } from './ui/google-map.js'; 
+import { HomePage } from './pages/home.js';
+import { CarsPage } from './pages/cars.js';
+import { DronesPage } from './pages/drones.js';
+import { MapPage } from './pages/map.js';
 
-let fleetService = new FleetService();
-fleetService.loadData();
+export class App extends BaseApplication {
 
-/** Button Class */
-let b = new Button('Click me');
-b.appendToElement($('body'));
+    constructor() {
+        super('Fleet Manager');
 
-/** Image Class */
-let i = new Image('../images/drone.jpg');
-i.appendToElement($('body'));
+        /** Fetch Fleet */
+        this.fleetService = new FleetService();
+        this.fleetService.loadData();
 
-/** TitleBar Class */
-let tb = new TitleBar("Our Aplication");
-tb.addLink('Home', '');
-tb.addLink('Cars', '');
-tb.addLink('Drones', '');
-tb.addLink('Map', '');
-tb.appendToElement($('body'));
+        /** Routes */
+        this.addRoute('Home', new HomePage(), true);
+        this.addRoute('Cars', new CarsPage());
+        this.addRoute('Drones', new DronesPage());
+        this.addRoute('Map', new MapPage());
+    }
 
-/** DataTable CLass */
-let headers = ['License', 'Make', 'Model', 'Miles'];
-let dt = new DataTable(headers, fleetService.cars);
-dt.appendToElement($('body'));
+}
 
-/** GoogleMap Class */
-let centerOfMap = {lat: 40.783661, lng: -73.965883};
-let map = new GoogleMap(centerOfMap, fleetService.drones);
-map.appendToElement($('body'));
+/** App Bootstraping */
+export let application = new App();
+application.show($('body'));
