@@ -1,17 +1,17 @@
-import { Vehicle } from './vehicle.js';
-import { Car } from './car.js';
-import { Drone } from './drone.js';
+import { Car } from './classes/car.js';
+import { Drone } from './classes/drone.js';
+import { FleetService } from './services/fleet.service.js';
 
-let c = new Car(123);
+import { FLEET } from './fleet.mock.js';
 
-console.log(c instanceof Car); //true
-console.log(c instanceof Vehicle); //true
-console.log(c instanceof Object); //true
+let fleetService = new FleetService();
+fleetService.loadData(FLEET);
 
-console.log(`c LN is: ${c.licenseNumber}`);
-console.log(`c GPS is: ${c.gpsEnabled}`);
+let car = fleetService.getCarByLicense('AT9900');
+console.log(car)
 
-c.start();
-c.stop(); //Inheriting Method
+let cars = fleetService.getCarsSortedByLicense();
+console.log(cars);
 
-Car.getCompanyName(); //Inheriting Static Method
+let filteredCars = fleetService.filterCarsBymake('U');
+console.log(filteredCars);
