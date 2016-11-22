@@ -1,12 +1,25 @@
+<!DOCTYPE html>
 <html>
-  <head>
+
+<head>
     <title>Drones</title>
+
+    <link rel="stylesheet" href="/node_modules/material-design-lite/material.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+
     <script src="node_modules/traceur/bin/traceur.js"></script>
-    <script src="node_modules/es6-module-loader/dist/es6-module-loader-dev.js"></script>
-  </head>
-  <body>
-      <script>
-          System.import('src/app.js');
-      </script> 
-  </body>
+    <script src="node_modules/systemjs/dist/system.js"></script>
+    <script src="node_modules/material-design-lite/material.min.js"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDWd_b6jmJr9aQymUl9CDrBl9zwPjZ5XL0&callback=googleMapsCallback" async defer></script>
+</head>
+
+<body>
+    <script>
+        function googleMapsCallback() {
+            System.paths['jquery'] = './node_modules/jquery/dist/jquery.js'; //Load jQuery as a Module
+            System.import('src/app.js');
+        }
+      </script>
+</body>
+
 </html>

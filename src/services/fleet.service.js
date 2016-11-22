@@ -2,6 +2,8 @@ import { Car } from '../classes/car.js';
 import { Drone } from '../classes/drone.js';
 import { ErrorLog } from './errorLog.js';
 
+import { FLEET } from '../fleet.mock.js';
+
 export class FleetService {
     
     constructor() {
@@ -30,8 +32,8 @@ export class FleetService {
         return this.cars.filter(car => car.make.indexOf(filter) >= 0);
     }
 
-    loadData(fleet) {
-        for(let data of fleet) {
+    loadData() {
+        for(let data of FLEET) {
             switch(data.type) {
                 case 'car':
                     if(this.validateCarData(data)) {
