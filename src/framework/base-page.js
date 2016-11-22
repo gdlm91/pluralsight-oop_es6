@@ -1,4 +1,4 @@
-import { BaseElement } from '../ui/index.js';
+import { BaseElement } from './base-element.js';
 
 export class BasePage extends BaseElement {
 

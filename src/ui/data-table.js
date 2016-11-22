@@ -1,4 +1,4 @@
-import { BaseElement } from './base-element.js';
+import { BaseElement } from '../framework/base-element.js';
 
 export class DataTable extends BaseElement{
 

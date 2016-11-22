@@ -1,4 +1,3 @@
-export * from './base-element.js';
 export * from './button.js';
 export * from './image.js';
 export * from './title-bar.js';
